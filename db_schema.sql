@@ -18,10 +18,25 @@ CREATE TABLE IF NOT EXISTS testUserRecords (
     FOREIGN KEY (test_user_id) REFERENCES testUsers(test_user_id)
 );
 
+CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    google_id TEXT NOT NULL,
+    username TEXT NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS blog (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    body TEXT NOT NULL,
+    created_by INT NOT NULL,
+    FOREIGN KEY (created_by) REFERENCES user(id)
+);
+
 --insert default data (if necessary here)
 
 INSERT INTO testUsers ("test_name") VALUES ("Simon Star");
 INSERT INTO testUserRecords ("test_record_value", "test_user_id") VALUES( "Lorem ipsum dolor sit amet", 1); --try changing the test_user_id to a different number and you will get an error
+
 
 COMMIT;
 

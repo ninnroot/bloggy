@@ -23,12 +23,13 @@ passport.deserializeUser(function (obj, cb) {
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const CALLBACK_RURL = process.env.CALLBACK_URL
 passport.use(
   new GoogleStrategy(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback",
+      callbackURL: CALLBACK_RURL,
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
@@ -47,7 +48,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/error" }),
+  passport.authenticate("google", { failureRedirect: "/error/login" }),
   function (req, res) {
     // Successful authentication, redirect success.
     res.redirect("/");
