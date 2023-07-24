@@ -67,6 +67,8 @@ Edit this section to include any settings that should be adjusted in configurati
 
 NB. we will ONLY run ```npm install```, ```npm run build-db```, and ```npm run start``` . We will NOT install additional packages to run your code and will NOT run additional build scripts. Be careful with any additional node dependencies that you use.
 
+#### Note on the exposed API key
+I know the Google OAuth2 API key is exposed. But, the assignment reviewer still needs the .env file since they will be running the application locally. The OAuth2 key is from a client created specifically for this application anyway, so no need to worry.
 
 
 
